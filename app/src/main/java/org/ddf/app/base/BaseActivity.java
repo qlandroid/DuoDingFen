@@ -43,9 +43,10 @@ import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 import org.ddf.app.C;
-import org.ddf.app.LayoutUtils;
 import org.ddf.app.R;
+import org.ddf.app.ToastUtils;
 import org.ddf.app.utils.StringUtils;
+import org.ddf.app.zxing.activity.CaptureActivity;
 
 import java.util.ArrayList;
 
@@ -60,6 +61,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     private static final int CHOOSE_PHOTO = 0xffff;
     public static final String BUNDLE = "bundle";
+    private static final int REQUEST_CODE_ASK_CAMERA = 22;
+    private static final int REQUEST_CODE_DECODE = 23;
     private BaseFragment currentKJFragment;
     public QMUITopBar mTopBar;
     private QMUITipDialog mLoadingDialog;
@@ -102,19 +105,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     }
 
     public void initBar() {
-        View view = findViewById(R.id.topbar);
-        if (view == null) {
-            return;
-        }
-        mTopBar = (QMUITopBar) view;
 
-        QMUIAlphaImageButton backImageButton = mTopBar.addLeftBackImageButton();
-        backImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
     }
 
@@ -210,7 +201,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     /********************************************************************/
 
-    public  void createView(){
+    public void createView() {
         LayoutUtils.bind(this);
     }
 
@@ -288,8 +279,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         }
     }
 
-    private void clickTopbarLeftImgs() {
-
+    public void clickTopbarLeftImgs() {
+        finish();
     }
 
     public void forbidClick(View v) {
@@ -491,7 +482,16 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
                     pickImage(mSelectImgs);
                 }
                 break;
+            case REQUEST_CODE_ASK_CAMERA:
+                if (granResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    toScanningActivity();
+                } else {
+                    displayMessageDialog("请到系统设置中，给予当前APP权限");
+                }
+                break;
+
             default:
+                super.onRequestPermissionsResult(requestCode, permissions, granResults);
         }
 
     }
@@ -673,6 +673,39 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         }
         tipFailDialog.dismiss();
         tipFailDialog = null;
+    }
+
+    /**
+     * 跳转到扫描页面
+     */
+    public void toScanningActivity() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            int checkCallPhonePermission = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
+            if (checkCallPhonePermission != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
+                    /**
+                     * 这个API主要用于给用户一个申请权限的解释，
+                     * 该方法只有在用户在上一次已经拒绝过你的这个权限申请。
+                     * 也就是说，用户已经拒绝一次了，
+                     * 你又弹个授权框，你需要给用户一个解释，为什么要授权，则使用该方法。
+                     */
+                    //ToastUtils.show(this, "没有权限");
+                    displayMessageDialog("没有权限");
+                } else {
+                    requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_CODE_ASK_CAMERA);
+                }
+                return;
+            } else {
+                startActivity(CaptureActivity.class, REQUEST_CODE_DECODE);
+            }
+        } else {
+            startActivity(CaptureActivity.class, REQUEST_CODE_DECODE);
+        }
+    }
+
+    @Override
+    public void toast(CharSequence msg) {
+        ToastUtils.showShortToast(this, msg);
     }
 }
 

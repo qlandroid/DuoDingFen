@@ -1,4 +1,4 @@
-package org.ddf.app;
+package org.ddf.app.base;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 
 import com.qmuiteam.qmui.alpha.QMUIAlphaImageButton;
 import com.qmuiteam.qmui.widget.QMUITopBar;
+
+import org.ddf.app.R;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -123,7 +125,7 @@ public class LayoutUtils {
         float v = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, topbarHeight, ctx.getResources().getDisplayMetrics());
         topBar.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) v));
         linearLayout.addView(topBar);
-        linearLayout.addView(inflate);
+        linearLayout.addView(inflate,new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
         Method setLayoutRes = aClass.getMethod("setContentView", new Class[]{View.class});
         if (setLayoutRes != null) {

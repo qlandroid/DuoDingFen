@@ -11,6 +11,7 @@
     <color name="div_color">#e9e9e9</color>
     <color name="colorGreen">#339900</color>
     <color name="colorGreen_0">#93cfa6</color>
+    <color name="colorGreen_1">#6fc78b</color>
     <color name="colorOrg">#E99938</color>
     <color name="colorOrgBg">#FDF0E5</color>
 
@@ -21,7 +22,7 @@
     <color name="btn_del_color">#E4445D</color>
     <color name="btn_del_select_color">#d23f56</color>
     <color name="colorBlue">#6BB6C8</color>
-    <color name="colorSelectBlue">#61a5b6</color>
+    <color name="colorSelectBlue">#087dca</color>
     <color name="btn_select_color">#36ededed</color>
 
     <color name="color_blue_3">#4b99f7</color>

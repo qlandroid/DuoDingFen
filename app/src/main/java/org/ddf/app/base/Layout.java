@@ -1,9 +1,11 @@
-package org.ddf.app;
+package org.ddf.app.base;
 
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
+
+import org.ddf.app.R;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -31,6 +33,10 @@ public @interface Layout {
 
     @LayoutRes int layoutRes() default -1;
 
+    /**
+     * 如设置为 0 则不显示
+     * @return
+     */
     @DrawableRes int backRes() default R.drawable.icon_back;
 
     @IdRes int topbarId() default R.id.topbar;

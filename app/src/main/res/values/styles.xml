@@ -13,13 +13,12 @@
         <!--   <item name="android:windowIsTranslucent">true</item>-->
         <item name="android:windowSoftInputMode">adjustPan|stateHidden</item>
         <item name="android:windowBackground">@color/colorGray</item>
-
-
+        <item name="android:dividerHeight">10dp</item>
         <!-- 配置qmui提供的theme -->
         <item name="qmui_config_color_blue">@color/colorWhite</item>
         <item name="qmui_topbar_title_color">@color/text_black_color</item>
         <item name="qmui_topbar_subtitle_color">@color/qmui_config_color_white</item>
-        <item name="qmui_topbar_text_btn_text_size">12sp</item>
+        <item name="qmui_topbar_text_btn_text_size">14sp</item>
         <item name="qmui_topbar_text_btn_color_state_list">@color/s_btn_blue_text</item>
         <item name="qmui_topbar_height">48dp</item>
         <item name="qmui_topbar_image_btn_height">48dp</item>
@@ -67,7 +66,8 @@
     </style>
 
     <style name="QDTopBar" parent="QMUI.TopBar">
-        <item name="qmui_topbar_bg_color">@color/white</item>
+        <item name="qmui_topbar_bg_color">@color/colorWhite</item>
+        <item name="qmui_topbar_left_back_drawable_id">@drawable/icon_back</item>
     </style>
 
     <style name="QDRadiusButton" parent="@style/Button">
@@ -94,10 +94,10 @@
     </style>
 
     <style name="AnimationActivity" parent="@android:style/Animation.Activity">
-        <item name="android:activityOpenEnterAnimation">@anim/slide_in_left</item>
-        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
-        <item name="android:activityCloseEnterAnimation">@anim/slide_in_right</item>
-        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_right</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_left</item>
     </style>
 
     <style name="button_big_padding_style">

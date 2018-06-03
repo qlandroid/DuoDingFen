@@ -60,7 +60,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".aty.LoginActivity" />
+        <activity android:name=".aty.HomeActivity" />
+        <activity android:name=".aty.OrderListActivity" />
+        <activity android:name=".aty.OrderDetailsActivity" />
+        <activity android:name=".aty.FirstActivity" />
+        <activity android:name=".aty.ApplyOrderListActivity" />
+        <activity android:name=".zxing.activity.CaptureActivity" />
+        <activity android:name=".aty.InputUserDetailsActivity"></activity>
     </application>
 
 </manifest>

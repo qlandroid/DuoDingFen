@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.neenbedankt.android-apt'
 android {
     compileSdkVersion rootProject.ext.sdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -79,4 +79,11 @@ dependencies {
     compile project(':http')
     compile 'com.google.code.gson:gson:2.8.1'
     compile project(':multi-image-selector')
+
+    compile 'com.google.zxing:core:3.3.0'
+
+    apt 'com.zhy:mpermission-compiler:1.0.0'
+    compile 'com.zhy:mpermission-api:1.0.0'
+
+    compile 'com.contrarywind:Android-PickerView:4.1.0'
 }

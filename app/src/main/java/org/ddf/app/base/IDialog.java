@@ -29,4 +29,6 @@ public interface IDialog {
     void displayMessageDialog(CharSequence msg, boolean isCancel);
 
     void displayMessageDialog(CharSequence msg, String action, QMUIDialogAction.ActionListener l);
+
+    void toast(CharSequence msg);
 }
