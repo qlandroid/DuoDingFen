@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.zxing.NotFoundException;
 import com.qmuiteam.qmui.alpha.QMUIAlphaImageButton;
 
+import org.ddf.app.C;
 import org.ddf.app.adapter.OrderAdapter;
 import org.ddf.app.adapter.bean.IOrder;
 import org.ddf.app.base.Layout;
@@ -45,6 +47,8 @@ public class HomeActivity extends BaseActivity {
     TextView tvPhone;
     @BindView(R.id.activity_home_tv_prices)
     TextView tvPrices;//申请总金额
+    @BindView(R.id.activity_home_iv)
+    ImageView iv;
 
     private GridAdapter gridAdapter;
     private OrderAdapter orderAdapter;
@@ -55,6 +59,8 @@ public class HomeActivity extends BaseActivity {
         super.initWidget();
         initGridButton();
         initApplyOrder();
+
+        setBannerHeight();
 
         setPrices(100000.00d);
         ArrayList<IOrder> l = new ArrayList<>();
@@ -104,6 +110,12 @@ public class HomeActivity extends BaseActivity {
 
     }
 
+    private void setBannerHeight() {
+        ViewGroup.LayoutParams layoutParams = iv.getLayoutParams();
+        layoutParams.height = C.SCREEN_HEIGHT_3;
+        iv.setLayoutParams(layoutParams);
+    }
+
 
     private void setPrices(double prices) {
         String s = FormatUtils.NumberFormat1(prices);
@@ -130,14 +142,14 @@ public class HomeActivity extends BaseActivity {
         qmuiAlphaImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                displayMessageDialog("点击成功了");
+                startActivity(CaptureActivity.class, REQUEST_DECODE);
             }
         });
     }
 
     @Override
     public void clickTopbarLeftImgs() {
-
+        startActivity(UserDetailsActivity.class);
     }
 
     /**

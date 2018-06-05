@@ -1,13 +1,12 @@
 package org.ddf.app.adapter;
 
-import android.support.annotation.LayoutRes;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
-import org.ddf.app.QViewHolder;
 import org.ddf.app.R;
 import org.ddf.app.adapter.bean.IOrder;
+import org.ddf.app.adapter.base.QViewHolder;
 
 /**
  * 描述：

@@ -21,7 +21,7 @@ import java.util.ArrayList;
 @Layout(layoutRes = R.layout.activity_order_details, titleRes = R.string.title_order_details)
 public class OrderDetailsActivity extends BaseActivity {
 
-    @BindView(R.id.activity_apply_order_list_rv)
+    @BindView(R.id.activity_order_details_rv)
     RecyclerView rvMonth;
 
     OrderMonthAdapter orderMonthAdapter = new OrderMonthAdapter();

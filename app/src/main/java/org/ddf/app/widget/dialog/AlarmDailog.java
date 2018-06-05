@@ -1,4 +1,4 @@
-package org.ddf.app;
+package org.ddf.app.widget.dialog;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.ddf.app.R;
 
 /**
  * 描述：

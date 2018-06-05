@@ -2,8 +2,8 @@ package org.ddf.app.adapter;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
-import org.ddf.app.QViewHolder;
 import org.ddf.app.R;
+import org.ddf.app.adapter.base.QViewHolder;
 import org.ddf.app.adapter.bean.TextImgBean;
 
 /**

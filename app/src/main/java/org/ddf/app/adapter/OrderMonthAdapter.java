@@ -3,10 +3,10 @@ package org.ddf.app.adapter;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 
-import org.ddf.app.QViewHolder;
 import org.ddf.app.R;
 import org.ddf.app.adapter.bean.IOrderApply;
 import org.ddf.app.adapter.bean.IOrderEnd;
+import org.ddf.app.adapter.base.QViewHolder;
 
 /**
  * 描述：

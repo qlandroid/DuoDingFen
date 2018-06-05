@@ -1,9 +1,11 @@
-package org.ddf.app;
+package org.ddf.app.utils;
 
 import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
 import android.widget.Toast;
+
+import org.ddf.app.widget.dialog.AlarmDailog;
 
 /**
  * 描述：

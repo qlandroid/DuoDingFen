@@ -9,6 +9,7 @@
     tools:context="org.ddf.app.aty.LoginActivity">
 
     <ImageView
+        android:id="@+id/activity_login_iv"
         android:scaleType="fitXY"
         android:layout_width="match_parent"
         android:layout_height="160dp"

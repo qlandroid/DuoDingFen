@@ -2,6 +2,8 @@ package org.ddf.app;
 
 import android.support.multidex.MultiDexApplication;
 
+import com.qmuiteam.qmui.util.QMUIDisplayHelper;
+
 /**
  * 描述：
  * 邮箱 email:strive_bug@yeah.net
@@ -10,9 +12,10 @@ import android.support.multidex.MultiDexApplication;
  * @author ql
  */
 
-public class MyApp  extends MultiDexApplication {
+public class MyApp extends MultiDexApplication {
 
     private static MyApp instance;
+
     public static MyApp getInstance() {
         return instance;
     }
@@ -21,5 +24,8 @@ public class MyApp  extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         instance = this;
+        C.SCREEN_WIDTH = QMUIDisplayHelper.getScreenWidth(this);
+        C.SCREEN_HEIGHT_3 = (int) (C.SCREEN_WIDTH * 1.0f * 9 / 16);
+
     }
 }

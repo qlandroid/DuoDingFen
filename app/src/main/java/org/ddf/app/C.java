@@ -15,8 +15,11 @@ public class C {
 
     public static final Gson sGson = new Gson();
     public static final int NORMAL_PAGE_NUM = 1;
-    public static int UI_ITEM_IMG_WIDTH;
-    public static int UI_ITEM_IMG_HEIGHT;
+    public static int SCREEN_WIDTH;
+    /**
+     * 宽高比例为  4:3
+     */
+    public static int SCREEN_HEIGHT_3;
 
 
 }

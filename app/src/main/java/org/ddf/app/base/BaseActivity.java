@@ -34,7 +34,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.qmuiteam.qmui.alpha.QMUIAlphaImageButton;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.qmuiteam.qmui.widget.QMUITopBar;
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog;
@@ -44,7 +43,8 @@ import com.zhy.http.okhttp.OkHttpUtils;
 
 import org.ddf.app.C;
 import org.ddf.app.R;
-import org.ddf.app.ToastUtils;
+import org.ddf.app.utils.ActivityUtils;
+import org.ddf.app.utils.ToastUtils;
 import org.ddf.app.utils.StringUtils;
 import org.ddf.app.zxing.activity.CaptureActivity;
 
@@ -91,6 +91,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
                 }
             }
         }
+
+        ActivityUtils.addAty(this);
         createView();
         BindViewUtils.find(this);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -348,6 +350,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected void onDestroy() {
         super.onDestroy();
         OkHttpUtils.getInstance().cancelTag(this);
+        ActivityUtils.remove(this);
     }
 
 

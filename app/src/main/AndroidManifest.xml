@@ -67,7 +67,8 @@
         <activity android:name=".aty.FirstActivity" />
         <activity android:name=".aty.ApplyOrderListActivity" />
         <activity android:name=".zxing.activity.CaptureActivity" />
-        <activity android:name=".aty.InputUserDetailsActivity"></activity>
+        <activity android:name=".aty.InputUserDetailsActivity" />
+        <activity android:name=".aty.UserDetailsActivity"></activity>
     </application>
 
 </manifest>

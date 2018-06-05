@@ -1,4 +1,4 @@
-package org.ddf.app;
+package org.ddf.app.adapter.base;
 
 import android.view.View;
 

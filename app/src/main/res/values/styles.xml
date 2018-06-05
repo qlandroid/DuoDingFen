@@ -134,6 +134,7 @@
     </style>
 
     <style name="button_big_del_style" parent="button_big_padding_style">
+        <item name="android:clickable">true</item>
         <item name="android:background">@drawable/slt_btn_del_red</item>
     </style>
 

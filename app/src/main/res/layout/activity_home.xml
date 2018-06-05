@@ -15,6 +15,7 @@
 
 
         <ImageView
+            android:id="@+id/activity_home_iv"
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:scaleType="fitXY"
@@ -32,9 +33,9 @@
             android:paddingTop="6dp">
 
             <ImageView
-                android:layout_width="@dimen/normal_iv_width"
-                android:layout_height="@dimen/normal_iv_width"
-                android:src="@mipmap/ic_launcher" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/home_user_32" />
 
             <TextView
                 android:id="@+id/activity_home_tv_phone"
