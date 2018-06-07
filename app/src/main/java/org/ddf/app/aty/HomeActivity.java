@@ -2,7 +2,9 @@ package org.ddf.app.aty;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.ql.bindview.BindView;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -62,6 +64,8 @@ public class HomeActivity extends BaseActivity {
 
         setBannerHeight();
 
+        tvLogout.setOnClickListener(this);
+
         setPrices(100000.00d);
         ArrayList<IOrder> l = new ArrayList<>();
         l.add(new IOrder() {
@@ -110,6 +114,17 @@ public class HomeActivity extends BaseActivity {
 
     }
 
+    @Override
+    public void forbidClick(View v) {
+        super.forbidClick(v);
+        int id = v.getId();
+        switch (id) {
+            case R.id.activity_home_tv_logout:
+                startActivity(LoginActivity.class);
+                break;
+        }
+    }
+
     private void setBannerHeight() {
         ViewGroup.LayoutParams layoutParams = iv.getLayoutParams();
         layoutParams.height = C.SCREEN_HEIGHT_3;
@@ -130,7 +145,10 @@ public class HomeActivity extends BaseActivity {
                 return false;
             }
         });
-        rvOrder.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        DividerItemDecoration decor = new DividerItemDecoration(this, LinearLayoutManager.VERTICAL);
+        Drawable drawable = ContextCompat.getDrawable(this, R.drawable.shape_div);
+        decor.setDrawable(drawable);
+        rvOrder.addItemDecoration(decor);
         rvOrder.setAdapter(orderAdapter);
     }
 

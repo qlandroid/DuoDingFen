@@ -2,6 +2,7 @@ package org.ddf.app;
 
 import android.support.multidex.MultiDexApplication;
 
+import com.moxie.client.manager.MoxieSDK;
 import com.qmuiteam.qmui.util.QMUIDisplayHelper;
 
 /**
@@ -26,6 +27,8 @@ public class MyApp extends MultiDexApplication {
         instance = this;
         C.SCREEN_WIDTH = QMUIDisplayHelper.getScreenWidth(this);
         C.SCREEN_HEIGHT_3 = (int) (C.SCREEN_WIDTH * 1.0f * 9 / 16);
+       MoxieSDK.init(this);
+
 
     }
 }

@@ -1,4 +1,4 @@
-package org.ddf.app.aty;
+package org.ddf.app.aty.loan;
 
 import android.ql.bindview.BindView;
 import android.view.View;
@@ -9,7 +9,6 @@ import android.widget.TextView;
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
-import com.chad.library.adapter.base.entity.MultiItemEntity;
 
 import org.ddf.app.R;
 import org.ddf.app.base.BaseActivity;
@@ -17,49 +16,49 @@ import org.ddf.app.base.Layout;
 
 import java.util.List;
 
-@Layout(layoutRes = R.layout.activity_input_user_details, titleRes = R.string.title_input_user_details)
-public class InputUserDetailsActivity extends BaseActivity {
+@Layout(layoutRes = R.layout.activity_input_project_details, titleRes = R.string.title_input_project_details)
+public class InputProjectDetailsActivity extends BaseActivity {
 
-    @BindView(R.id.activity_input_user_details_education_group)
-    ViewGroup educationGroup;
-    @BindView(R.id.activity_input_user_details_tv_education)
-    TextView tvEducation;
-    @BindView(R.id.activity_input_user_details_job_group)
-    ViewGroup jobGroup;
-    @BindView(R.id.activity_input_user_details_tv_job)
-    TextView tvJob;
-    @BindView(R.id.activity_input_user_details_marriage_group)
-    ViewGroup marriageGroup;
-    @BindView(R.id.activity_input_user_details_tv_marriage)
-    TextView tvMarriage;
-    @BindView(R.id.activity_input_user_details_et_address)
-    EditText etAddress;
-    @BindView(R.id.activity_input_user_details_et_name)
-    EditText etName;
-    @BindView(R.id.activity_input_user_details_et_phone)
-    EditText etPhone;
-    @BindView(R.id.activity_input_user_details_et_price)
+    @BindView(R.id.activity_input_project_details_tv_next)
+    TextView tvNext;
+    @BindView(R.id.activity_input_project_details_et_input_name)
+    EditText etInputName;
+    @BindView(R.id.activity_input_project_details_et_price)
     EditText etPrice;
+    @BindView(R.id.activity_input_project_details_select_user_group)
+    ViewGroup selectUserGroup;//选择咨询师
+    @BindView(R.id.activity_input_project_details_tv_select_user)
+    TextView tvSelectUser;
+    @BindView(R.id.activity_input_project_details_month_group)
+    ViewGroup monthGroup;//期数选择
+    @BindView(R.id.activity_input_project_details_tv_month)
+    TextView tvMonth;
+    @BindView(R.id.activity_input_project_details_project_group)
+    ViewGroup projectGroup;//项目选择
+    @BindView(R.id.activity_input_project_details_tv_project)
+    TextView tvProject;
 
     @Override
     public void initWidget() {
         super.initWidget();
-        educationGroup.setOnClickListener(this);
-        jobGroup.setOnClickListener(this);
-        marriageGroup.setOnClickListener(this);
+        tvNext.setOnClickListener(this);
+        monthGroup.setOnClickListener(this);
+        selectUserGroup.setOnClickListener(this);
+        projectGroup.setOnClickListener(this);
     }
-
 
     @Override
     public void forbidClick(View v) {
         super.forbidClick(v);
-        int id = v.getId();
-        switch (id) {
-            case R.id.activity_input_user_details_education_group://学校选择
+        switch (v.getId()) {
+            case R.id.activity_input_project_details_tv_next://下一步
+                startActivity(MoxieSdkStartActivity.class);
                 break;
-            case R.id.activity_input_user_details_marriage_group://婚姻状况
+            case R.id.activity_input_project_details_select_user_group://选择咨询师
                 break;
-            case R.id.activity_input_user_details_job_group://工作状况
+            case R.id.activity_input_project_details_month_group://期数选择
+                break;
+            case R.id.activity_input_project_details_project_group://项目选择
                 break;
         }
     }
@@ -96,5 +95,4 @@ public class InputUserDetailsActivity extends BaseActivity {
         o.setPicker(tags);
         o.show();
     }
-
 }

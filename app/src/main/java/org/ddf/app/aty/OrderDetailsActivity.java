@@ -6,6 +6,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.qmuiteam.qmui.util.QMUIDisplayHelper;
@@ -23,13 +24,16 @@ public class OrderDetailsActivity extends BaseActivity {
 
     @BindView(R.id.activity_order_details_rv)
     RecyclerView rvMonth;
+    @BindView(R.id.activity_order_details_v)
+    View v;
 
     OrderMonthAdapter orderMonthAdapter = new OrderMonthAdapter();
 
     @Override
     public void initWidget() {
         super.initWidget();
-        rvMonth.setLayoutManager(new LinearLayoutManager(this){
+        toFocusable(v);
+        rvMonth.setLayoutManager(new LinearLayoutManager(this) {
             @Override
             public boolean canScrollVertically() {
                 return false;

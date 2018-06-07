@@ -4,5 +4,7 @@
     <string name="title_order_details">订单详情</string>
     <string name="title_apply_order_list">还款列表</string>
     <string name="title_input_user_details">个人信息填写</string>
+    <string name="title_input_project_details">项目信息填写</string>
+    <string name="title_agreement">签署合同</string>
     <string name="next">下一步</string>
 </resources>
