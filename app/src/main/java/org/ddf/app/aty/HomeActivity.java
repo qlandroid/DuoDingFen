@@ -1,6 +1,5 @@
 package org.ddf.app.aty;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.ql.bindview.BindView;
@@ -9,29 +8,30 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.google.zxing.NotFoundException;
 import com.qmuiteam.qmui.alpha.QMUIAlphaImageButton;
 
 import org.ddf.app.C;
-import org.ddf.app.adapter.OrderAdapter;
-import org.ddf.app.adapter.bean.IOrder;
-import org.ddf.app.base.Layout;
 import org.ddf.app.R;
 import org.ddf.app.adapter.GridAdapter;
+import org.ddf.app.adapter.OrderAdapter;
+import org.ddf.app.adapter.bean.IOrder;
 import org.ddf.app.adapter.bean.TextImgBean;
+import org.ddf.app.aty.loan.InputProjectDetailsActivity;
 import org.ddf.app.base.BaseActivity;
+import org.ddf.app.base.Layout;
+import org.ddf.app.utils.ActivityUtils;
 import org.ddf.app.utils.FormatUtils;
-import org.ddf.app.utils.ImgDecode;
 import org.ddf.app.zxing.activity.CaptureActivity;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +55,11 @@ public class HomeActivity extends BaseActivity {
     private GridAdapter gridAdapter;
     private OrderAdapter orderAdapter;
 
+    @Override
+    public void initData() {
+        super.initData();
+        EventBus.getDefault().register(this);
+    }
 
     @Override
     public void initWidget() {
@@ -170,6 +175,13 @@ public class HomeActivity extends BaseActivity {
         startActivity(UserDetailsActivity.class);
     }
 
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void agreementOk(String isOk) {
+        ActivityUtils.singleAty(this);
+        startActivity(ApplyOrderListActivity.class);
+    }
+
     /**
      * 初始化button
      */
@@ -207,16 +219,18 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode != Activity.RESULT_OK) {
-            return;
-        }
         switch (requestCode) {
             case REQUEST_DECODE:
-                String resultContent = CaptureActivity.getResultContent(data);
-                displayMessageDialog(resultContent);
+                startActivity(InputProjectDetailsActivity.class);
                 break;
             default:
                 super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

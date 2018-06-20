@@ -11,15 +11,19 @@ import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 
 import org.ddf.app.R;
+import org.ddf.app.TestDataUtils;
 import org.ddf.app.aty.loan.HospitalActivity;
 import org.ddf.app.base.BaseActivity;
 import org.ddf.app.base.Layout;
+import org.ddf.app.bean.ITag;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Layout(layoutRes = R.layout.activity_input_user_details, titleRes = R.string.title_input_user_details)
 public class InputUserDetailsActivity extends BaseActivity {
-
+    public static final int CLICK_TAG_MARRIAGE = 1;//点击了婚姻状况
+    public static final int CLICK_TAG_JOB = 2;//点击了工作；
     @BindView(R.id.activity_input_user_details_education_group)
     ViewGroup educationGroup;
     @BindView(R.id.activity_input_user_details_tv_education)
@@ -43,6 +47,18 @@ public class InputUserDetailsActivity extends BaseActivity {
     @BindView(R.id.activity_input_user_details_tv_next)
     TextView tvNext;
 
+    private ArrayList<ITag> mMarriageTags;
+    private ArrayList<ITag> mJobTags;
+
+    int clickTag;
+
+    @Override
+    public void initData() {
+        super.initData();
+        mJobTags = TestDataUtils.getTags();
+        mMarriageTags = TestDataUtils.getTags();
+    }
+
     @Override
     public void initWidget() {
         super.initWidget();
@@ -61,8 +77,12 @@ public class InputUserDetailsActivity extends BaseActivity {
             case R.id.activity_input_user_details_education_group://学校选择
                 break;
             case R.id.activity_input_user_details_marriage_group://婚姻状况
+                clickTag = CLICK_TAG_MARRIAGE;
+                displayBottom(mMarriageTags);
                 break;
             case R.id.activity_input_user_details_job_group://工作状况
+                clickTag = CLICK_TAG_JOB;
+                displayBottom(mJobTags);
                 break;
             case R.id.activity_input_user_details_tv_next:
                 startActivity(HospitalActivity.class);
@@ -79,28 +99,22 @@ public class InputUserDetailsActivity extends BaseActivity {
         OptionsPickerView o = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
-              /*  MultiItemEntity multiItemEntity = list.get(selectPosition);
-
-                if (multiItemEntity instanceof ReleaseHouseSelectEntity) {
-                    ReleaseHouseSelectEntity sm = (ReleaseHouseSelectEntity) multiItemEntity;
-                    ITag selectTag = sm.getTags().get(options1);
-                    selectTag.setSelect(true);
-                    sm.setSelectTag(selectTag);
-                    switch (sm.getInputType()) {
-                        case 13://当前选的是租住类型；
-                            checkIsShowJointRentItem(selectTag);
-                            break;
-                        case 50://选择托管方式， 全权托管，部分托管；
-                            checkSelectMode(selectTag);
-                            break;
-                    }
-
+                switch (clickTag) {
+                    case CLICK_TAG_JOB:
+                        ITag iTag = mJobTags.get(options1);
+                        tvJob.setText(iTag.getTagName());
+                        break;
+                    case CLICK_TAG_MARRIAGE:
+                        ITag iTag1 = mMarriageTags.get(options1);
+                        tvMarriage.setText(iTag1.getTagName());
+                        break;
+                    default:
                 }
-                mAdapter.notifyItemChanged(selectPosition);*/
             }
         }).build();
         o.setPicker(tags);
         o.show();
     }
+
 
 }

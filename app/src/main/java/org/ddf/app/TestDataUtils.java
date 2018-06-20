@@ -6,6 +6,7 @@ import org.ddf.app.adapter.OrderMonthAdapter;
 import org.ddf.app.adapter.bean.IOrder;
 import org.ddf.app.adapter.bean.IOrderApply;
 import org.ddf.app.adapter.bean.IOrderEnd;
+import org.ddf.app.bean.ITag;
 import org.ddf.app.utils.FormatUtils;
 
 import java.util.ArrayList;
@@ -24,16 +25,16 @@ public class TestDataUtils {
     public static ArrayList<IOrder> getOrderList() {
         ArrayList<IOrder> list = new ArrayList<>();
 
-        list.add(new Order(R.drawable.shape_radius_yellow_div_black,false));
-        list.add(new Order(R.drawable.shape_radius_gray_div_black,true));
-        list.add(new Order(R.drawable.shape_radius_green_div_black,true));
+        list.add(new Order(R.drawable.shape_radius_yellow_div_black, false));
+        list.add(new Order(R.drawable.shape_radius_gray_div_black, true));
+        list.add(new Order(R.drawable.shape_radius_green_div_black, true));
 
 
         return list;
     }
 
 
-    public static ArrayList<MultiItemEntity> getOrderMonthList(){
+    public static ArrayList<MultiItemEntity> getOrderMonthList() {
         ArrayList<MultiItemEntity> list = new ArrayList<>();
 
         list.add(new OrderMonth(OrderMonthAdapter.ITEM_APPLY));
@@ -46,6 +47,14 @@ public class TestDataUtils {
         list.add(new OrderMonth(OrderMonthAdapter.ITEM_END));
         list.add(new OrderMonth(OrderMonthAdapter.ITEM_WARNING));
 
+        return list;
+    }
+
+    public static ArrayList<ITag> getTags() {
+        ArrayList<ITag> list = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            list.add(new TagTest("item-->" + i, i));
+        }
         return list;
     }
 
@@ -99,7 +108,7 @@ public class TestDataUtils {
         }
     }
 
-    public static class OrderMonth implements IOrderEnd,IOrderApply,MultiItemEntity{
+    public static class OrderMonth implements IOrderEnd, IOrderApply, MultiItemEntity {
         int itemType;
 
         public OrderMonth(int itemType) {
@@ -129,6 +138,41 @@ public class TestDataUtils {
         @Override
         public int getItemType() {
             return itemType;
+        }
+    }
+
+    public static class TagTest implements ITag {
+        String tagName;
+        Object tag;
+
+        public TagTest(String tagName, Object tag) {
+            this.tagName = tagName;
+            this.tag = tag;
+        }
+
+        @Override
+        public boolean isSelect() {
+            return false;
+        }
+
+        @Override
+        public String getTagName() {
+            return tagName;
+        }
+
+        @Override
+        public Object getTag() {
+            return tag;
+        }
+
+        @Override
+        public void setSelect(boolean select) {
+
+        }
+
+        @Override
+        public String getPickerViewText() {
+            return tagName;
         }
     }
 }

@@ -1,9 +1,11 @@
 package org.ddf.app.aty.loan;
 
 import android.content.Context;
+import android.ql.bindview.BindView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.moxie.client.manager.MoxieCallBack;
@@ -19,7 +21,6 @@ import org.ddf.app.base.Layout;
 @Layout(layoutRes = R.layout.activity_moxie_sdk_start, title = "启动认证")
 public class MoxieSdkStartActivity extends BaseActivity {
     private static final String TAG = "MoxieSdkHelper";
-
     //合作方系统中的客户ID
     String mUserId = "2018060600001316";  //合作方系统中的客户ID
 
@@ -31,6 +32,7 @@ public class MoxieSdkStartActivity extends BaseActivity {
         super.initWidget();
         startSdk();
     }
+
 
     private void startSdk() {
         MxParam mxParam = new MxParam();
@@ -138,6 +140,7 @@ public class MoxieSdkStartActivity extends BaseActivity {
                                     Toast.makeText(getContext(), "导入成功", Toast.LENGTH_SHORT).show();
                             }
                             moxieContext.finish();
+                            startActivity(InputUserDetailsActivity.class);
                             return true;
                     }
                 }

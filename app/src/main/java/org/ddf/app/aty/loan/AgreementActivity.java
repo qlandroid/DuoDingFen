@@ -1,5 +1,6 @@
 package org.ddf.app.aty.loan;
 
+import android.app.Activity;
 import android.ql.bindview.BindView;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +13,7 @@ import org.ddf.app.aty.ApplyOrderListActivity;
 import org.ddf.app.base.BaseActivity;
 import org.ddf.app.base.Layout;
 import org.ddf.app.widget.ScrollWebView;
+import org.greenrobot.eventbus.EventBus;
 
 @Layout(layoutRes = R.layout.activity_agreement, titleRes = R.string.title_agreement)
 public class AgreementActivity extends BaseActivity {
@@ -70,7 +72,7 @@ public class AgreementActivity extends BaseActivity {
         super.forbidClick(v);
         switch (v.getId()) {
             case R.id.activity_agreement_tv_ok:
-                startActivity(ApplyOrderListActivity.class);
+                EventBus.getDefault().post("Y");
                 break;
         }
     }

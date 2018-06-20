@@ -28,6 +28,7 @@ public class HospitalActivity extends BaseActivity {
         int id = v.getId();
         switch (id) {
             case R.id.activity_hospital_tv_yes:
+                startActivity(AgreementActivity.class);
                 break;
         }
     }

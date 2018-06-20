@@ -13,6 +13,7 @@ import com.bigkoo.pickerview.view.OptionsPickerView;
 import org.ddf.app.R;
 import org.ddf.app.base.BaseActivity;
 import org.ddf.app.base.Layout;
+import org.ddf.app.bean.ITag;
 
 import java.util.List;
 
@@ -37,6 +38,8 @@ public class InputProjectDetailsActivity extends BaseActivity {
     ViewGroup projectGroup;//项目选择
     @BindView(R.id.activity_input_project_details_tv_project)
     TextView tvProject;
+
+
 
     @Override
     public void initWidget() {
@@ -68,28 +71,11 @@ public class InputProjectDetailsActivity extends BaseActivity {
      *
      * @param tags
      */
-    private void displayBottom(List tags) {
+    private void displayBottom(List<ITag> tags) {
         OptionsPickerView o = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
-              /*  MultiItemEntity multiItemEntity = list.get(selectPosition);
 
-                if (multiItemEntity instanceof ReleaseHouseSelectEntity) {
-                    ReleaseHouseSelectEntity sm = (ReleaseHouseSelectEntity) multiItemEntity;
-                    ITag selectTag = sm.getTags().get(options1);
-                    selectTag.setSelect(true);
-                    sm.setSelectTag(selectTag);
-                    switch (sm.getInputType()) {
-                        case 13://当前选的是租住类型；
-                            checkIsShowJointRentItem(selectTag);
-                            break;
-                        case 50://选择托管方式， 全权托管，部分托管；
-                            checkSelectMode(selectTag);
-                            break;
-                    }
-
-                }
-                mAdapter.notifyItemChanged(selectPosition);*/
             }
         }).build();
         o.setPicker(tags);
